@@ -31,7 +31,9 @@ flash_debug: debug
 
 
 # Softdevice
-# No support right now for the softdevice. Doesn't seem like this repo needs it
+.PHONY: flash_soft
+flash_soft: all
+	$(Q) $(OPENOCD) $(OPENOCD_OPTIONS) -c "debug_level 0; program $(SOFTDEVICE_PATH); program $(HEX); verify_image $(HEX); reset; shutdown;"
 
 # RTT
 # No support right now for RTT. Doesn't seem like this repo needs it
